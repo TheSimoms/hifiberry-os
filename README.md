@@ -31,6 +31,7 @@ Audio players are provided as standalone packages. You only need to install the 
 - [**Raat**](https://roonlabs.com/) – Roon audio playback (via the Roon Bridge)
 - [**Shairplay**](https://github.com/juhovh/shairplay) – AirPlay 2 implementation
 - [**Squeezelite**](https://github.com/ralph-irving/squeezelite) – Logitech Media Server client
+- [**GMediaRender**](https://github.com/hzeller/gmrender-resurrect) – UPnP/DLNA media renderer
 
 More players may be added in the future. You can also package and install your own player. To make it visible and controllable through AudioControl/WebUI, see [Add your own player](docs/add-your-own-player.md).
 

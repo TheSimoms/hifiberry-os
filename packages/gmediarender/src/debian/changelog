@@ -1,0 +1,10 @@
+hifiberry-gmediarender (0.3.1) stable; urgency=medium
+
+  * Initial release
+  * UPnP/DLNA media renderer integration for HiFiBerryOS
+  * Based on gmrender-resurrect via the gmediarender Debian package
+  * Includes metadata bridge for AudioControl (ACR) integration
+  * Drop-in registration for Web UI, configserver, and ACR
+  * Ships DLNA icon for player registry
+
+ -- Simon Borøy <simoms@pm.me>  Sat, 14 Mar 2026 10:00:00 +0100

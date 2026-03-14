@@ -1,0 +1,10 @@
+<svg class="css-icon" viewBox="-1 -1 23 23" xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor" stroke-width="1" stroke-linecap="round" stroke-linejoin="round">
+  <!-- Monitor/screen representing a media renderer -->
+  <rect x="2" y="3" width="17" height="11" rx="1"/>
+  <line x1="7" y1="17" x2="14" y2="17"/>
+  <line x1="10.5" y1="14" x2="10.5" y2="17"/>
+  <!-- Wireless/streaming waves -->
+  <path d="M6.5,8 Q10.5,4 14.5,8"/>
+  <path d="M8,9.5 Q10.5,6.5 13,9.5"/>
+  <path d="M9.5,11 Q10.5,9 11.5,11"/>
+</svg>

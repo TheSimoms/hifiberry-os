@@ -1,0 +1,79 @@
+#!/bin/bash
+set -e
+
+case "$1" in
+    configure)
+        # Register in Web UI player registry
+        HBOS_PLAYERS_D="/etc/hifiberry/players.d"
+        mkdir -p "$HBOS_PLAYERS_D/icons"
+
+        cat > "$HBOS_PLAYERS_D/gmediarender.json" <<'PLAYEREOF'
+{
+    "name": "UPnP/DLNA",
+    "provided_by": "gmediarender",
+    "systemd_service": "gmediarender",
+    "icon": "dlna",
+    "allow_change": true,
+    "maintainer_name": "Wanted",
+    "maintainer_url": "https://github.com/hifiberry/hifiberry-os/blob/hbosng/docs/maintainers-wanted.md"
+}
+PLAYEREOF
+
+        # Install icon
+        if [ -f /usr/share/hifiberry-gmediarender/icons/dlna.svg ]; then
+            cp /usr/share/hifiberry-gmediarender/icons/dlna.svg "$HBOS_PLAYERS_D/icons/dlna.svg"
+        fi
+
+        echo "Registered UPnP/DLNA in Web UI player registry."
+
+        # Register systemd permissions via configserver drop-in
+        mkdir -p /etc/configserver/conf.d
+        cat > /etc/configserver/conf.d/gmediarender.json <<'CONFEOF'
+{
+    "systemd": {
+        "gmediarender": "all"
+    }
+}
+CONFEOF
+
+        echo "Configserver drop-in installed for gmediarender."
+
+        # Register with ACR as a generic player
+        if [ -d /etc/audiocontrol ]; then
+            ACR_PLAYERS_D="/etc/audiocontrol/players.d"
+            mkdir -p "$ACR_PLAYERS_D"
+            cat > "$ACR_PLAYERS_D/gmediarender.json" <<'ACREOF'
+{
+    "generic": {
+        "name": "dlna",
+        "enable": true,
+        "initial_state": "stopped",
+        "supports_api_events": true,
+        "capabilities": [
+            "play",
+            "pause",
+            "stop",
+            "seek",
+            "metadata",
+            "receives_updates"
+        ]
+    }
+}
+ACREOF
+            echo "Registered gmediarender with ACR."
+        fi
+        ;;
+
+    abort-upgrade|abort-remove|abort-deconfigure)
+        # No actions needed for user service during these states
+        ;;
+
+    *)
+        echo "postinst called with unknown argument \`$1'" >&2
+        exit 1
+        ;;
+esac
+
+#DEBHELPER#
+
+exit 0

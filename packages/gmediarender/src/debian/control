@@ -1,0 +1,31 @@
+Source: hifiberry-gmediarender
+Section: sound
+Priority: optional
+Maintainer: HiFiBerry <info@hifiberry.com>
+Build-Depends: debhelper-compat (= 13)
+Standards-Version: 4.6.0
+Homepage: https://github.com/hzeller/gmrender-resurrect
+Vcs-Git: https://github.com/hifiberry/hifiberry-os.git
+Vcs-Browser: https://github.com/hifiberry/hifiberry-os
+
+Package: hifiberry-gmediarender
+Architecture: all
+Depends: ${misc:Depends},
+         gmediarender (>= 0.0.8),
+         gstreamer1.0-plugins-good,
+         gstreamer1.0-alsa,
+         hifiberry-configurator,
+         curl,
+         avahi-daemon,
+         avahi-utils,
+         uuid-runtime
+Recommends: gstreamer1.0-plugins-bad,
+            gstreamer1.0-plugins-ugly
+Description: UPnP/DLNA media renderer for HiFiBerryOS
+ Integrates gmediarender (gmrender-resurrect) as a UPnP/DLNA media
+ renderer into HiFiBerryOS. Allows any UPnP/DLNA controller to stream
+ audio to the HiFiBerry device.
+ .
+ This package provides the startup scripts, systemd service, metadata
+ bridge for AudioControl integration, and Web UI registration files.
+ The actual renderer binary is provided by the gmediarender package.

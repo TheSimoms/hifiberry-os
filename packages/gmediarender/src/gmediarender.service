@@ -1,0 +1,17 @@
+[Unit]
+Description=GMediaRender UPnP/DLNA Renderer (user service)
+# Run after the user PipeWire session is up and network is available
+After=pipewire.service
+Wants=network-online.target
+After=network-online.target
+
+[Service]
+Type=simple
+ExecStart=/usr/bin/start-gmediarender
+Restart=on-failure
+RestartSec=10
+StartLimitInterval=30
+StartLimitBurst=5
+
+[Install]
+WantedBy=default.target

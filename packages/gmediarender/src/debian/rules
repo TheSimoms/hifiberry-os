@@ -1,0 +1,31 @@
+#!/usr/bin/make -f
+
+%:
+	dh $@
+
+override_dh_auto_configure:
+	# Nothing to configure - this is a wrapper package
+
+override_dh_auto_build:
+	# Nothing to build - this is a wrapper package
+
+override_dh_auto_install:
+	# Install helper scripts
+	mkdir -p debian/hifiberry-gmediarender/usr/bin
+	cp start-gmediarender.sh debian/hifiberry-gmediarender/usr/bin/start-gmediarender
+	cp gmediarender-bridge.sh debian/hifiberry-gmediarender/usr/bin/gmediarender-bridge
+	chmod +x debian/hifiberry-gmediarender/usr/bin/*
+
+	# Install systemd user service
+	mkdir -p debian/hifiberry-gmediarender/usr/lib/systemd/user
+	cp gmediarender.service debian/hifiberry-gmediarender/usr/lib/systemd/user/
+
+	# Install icon for player registry
+	mkdir -p debian/hifiberry-gmediarender/usr/share/hifiberry-gmediarender/icons
+	cp icons/dlna.svg debian/hifiberry-gmediarender/usr/share/hifiberry-gmediarender/icons/
+
+override_dh_auto_test:
+	# No tests
+
+override_dh_auto_clean:
+	# Nothing to clean

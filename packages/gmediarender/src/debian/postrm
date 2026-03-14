@@ -1,0 +1,25 @@
+#!/bin/bash
+set -e
+
+case "$1" in
+    remove|purge)
+        # Remove player registry files
+        rm -f /etc/hifiberry/players.d/gmediarender.json
+        rm -f /etc/hifiberry/players.d/icons/dlna.svg
+        # Remove configserver drop-in
+        rm -f /etc/configserver/conf.d/gmediarender.json
+        # Remove ACR player registration
+        rm -f /etc/audiocontrol/players.d/gmediarender.json
+        ;;
+    upgrade|failed-upgrade|abort-install|abort-upgrade|disappear)
+        :
+        ;;
+    *)
+        echo "postrm called with unknown argument \`$1'" >&2
+        exit 1
+        ;;
+esac
+
+#DEBHELPER#
+
+exit 0
